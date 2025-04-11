@@ -1,12 +1,22 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [FormsModule, CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-todo';
+  tasks: string[] = [];
+  newTask: string = '';
+
+  addTask() {
+    if (this.newTask.trim()) {
+      this.tasks.push(this.newTask);
+      this.newTask = '';
+    }
+  }
 }
